@@ -1,0 +1,19 @@
+/venv
+/temp
+*.ipynb
+*/__pycache__
+__pycache__
+*.pfx
+/dataset
+/dataset_filtrado
+/datasets_utilizados
+/outros_datasets
+.env
+# *.pdf
+# *.pem
+/temp/
+*.zip
+*.png
+/modelos
+/2_Classes
+/4_Classes
