@@ -1,6 +1,5 @@
 /venv
 /temp
-*.ipynb
 */__pycache__
 __pycache__
 *.pfx

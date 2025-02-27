@@ -129,8 +129,8 @@ def listar_modelos(diretorio="modelos", excluir=None):
 
 
 # Função para carregar o histórico ajustado ao novo formato
-def load_history(classe, model_name, modelpath = 'x'):
-    history_path = os.path.join(classe, modelpath , "modelos", model_name, "historico.pkl")
+def load_history(classe, model_name):
+    history_path = os.path.join(classe, "modelos", model_name, "historico.pkl")
     with open(history_path, 'rb') as f:
         history = pickle.load(f)
     return history
@@ -180,7 +180,7 @@ def plot_confusion_matrix(true_labels, predicted_labels, class_names, model_name
 
 
 
-def avaliar_modelo_no_teste(model, test_ds, modl, class_names):
+def avaliar_modelo_no_teste(model, test_ds, modl, class_names, plot_conf=False):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss()
     
@@ -221,8 +221,7 @@ def avaliar_modelo_no_teste(model, test_ds, modl, class_names):
     print(f"--- Treinamento {modl} ---")
     print(f"📊 Teste - Perda: {avg_loss:.4f}, Precisão: {accuracy:.2f}%, Sensibilidade: {avg_sensitivity:.4f}, Especificidade: {avg_specificity:.4f}, Tempo Medio Inferencia (s): {avg_inference_time:.6f}s")
 
-    # Gerar Matriz de Confusão
-    plot_confusion_matrix(all_labels, all_preds, class_names, modl)
+    if plot_conf == True:plot_confusion_matrix(all_labels, all_preds, class_names, modl)
 
 def print_history_values(histories, model_name):
     print(f"--- {model_name} History ---")
